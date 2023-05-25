@@ -26,4 +26,13 @@ class UserController extends Controller
             return response()->json(['Message' => 'Erro ao criar usuário.', 'DevMessage' => $th->getMessage()], 400);
         }
     }
+    public function login(Request $request){
+        $data = $request->all();
+        $verifyNameAlreadyExist = User::where('name', $data['name'])->first();
+        if (!$verifyNameAlreadyExist) return response()->json(['Message' => 'Usuário não encontrado.'], 400);
+        if (!password_verify($data['password'], $verifyNameAlreadyExist->password)){
+            return response()->json(['Message' => 'Credenciais incorretas.'], 400);
+        }
+        return response()->json(['Message' => 'Usuário logado com sucesso', 'data' => $verifyNameAlreadyExist], 200);
+    }
 }

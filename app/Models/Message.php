@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-    protected $fillable = ['text'];
+    protected $fillable = ['text', 'is_read'];
 
     use HasFactory;
 }
