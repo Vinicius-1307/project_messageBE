@@ -25,3 +25,4 @@ Route::post('/user', [UserController::class, 'store']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/message', [MessageController::class, 'store']);
 Route::get('/message', [MessageController::class, 'index']);
+Route::get('/message-read', [MessageController::class, 'is_read']);
